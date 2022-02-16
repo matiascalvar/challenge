@@ -1,6 +1,6 @@
 .card {
-    width: 500px;
-    /* height: 300px; */
+    width: 60rem;
+    min-height: 30rem;
     padding: 50px;
     background-color: rgb(203, 173, 231);
     border-radius: 10px;
@@ -12,6 +12,8 @@
 }
 
 .tododiv {
+    width: 40rem;
+    margin: auto;
     display: flex;
     list-style-type: none;
     justify-content: space-between;
@@ -23,4 +25,35 @@
 
 .completed {
     color: grey;
+}
+.delete {
+    margin-left: 1rem;
+}
+.todoName{
+    width: 20rem;
+    text-align: start;
+}
+
+.editLink{
+    text-decoration: none;
+}
+
+.form {
+    margin-top: 5rem;
+}
+.form button {
+    width: 100px;
+    height: 2rem;
+    border-radius: 10px;
+    border: none;
+}
+.form button:hover {
+    background-color: rgb(184, 143, 223);
+    color: white
+}
+
+.form input {
+    height: 2rem;
+    border-radius: 10px;
+    border: none;
 }

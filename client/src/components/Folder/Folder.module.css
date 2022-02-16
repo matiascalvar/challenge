@@ -1,6 +1,6 @@
 .card {
-    width: 500px;
-    /* height: 300px; */
+    width: 60rem;
+    min-height: 30rem;
     padding: 50px;
     background-color: rgb(203, 173, 231);
     border-radius: 10px;
@@ -19,4 +19,32 @@
 
 .card ul {
     padding: 0 10px;
+}
+
+.title{
+    text-transform: capitalize;
+}
+
+.delete {
+    margin-left: 1rem;
+}
+
+.form {
+    margin-top: 5rem;
+}
+.form button {
+    width: 100px;
+    height: 2rem;
+    border-radius: 10px;
+    border: none;
+}
+.form button:hover {
+    background-color: rgb(184, 143, 223);
+    color: white
+}
+
+.form input {
+    height: 2rem;
+    border-radius: 10px;
+    border: none;
 }
