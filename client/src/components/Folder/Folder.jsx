@@ -7,35 +7,36 @@ const URL = "http://localhost:3001";
 
 function Folder() {
 
-    const [folders, setFolders] = useState([]);
-    const [input, setInput] = useState("");
+  const [folders, setFolders] = useState([]);
+  const [input, setInput] = useState("");
 
-    async function getFolders() {
-       const response = await axios.get(`${URL}/folder`);
-       setFolders(response.data);
-       console.log(response.data)
-    }
-    const deleteFolder = async (id) => {
-        const response = await axios.delete(`${URL}/folder/${id}`);
-        setFolders(folders.filter(e => e.id !== id))
-    };
+  // fn que trae la lista de carpetas del back
+  async function getFolders() {
+    const response = await axios.get(`${URL}/folder`);
+      setFolders(response.data);
+      console.log(response.data)
+  }
+  // fn que borra una carpeta
+  const deleteFolder = async (id) => {
+    const response = await axios.delete(`${URL}/folder/${id}`);
+    // setFolders(folders.filter(e => e.id !== id))
+    getFolders();
+  };
 
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        if (input) {
-            let newFolder = axios.post(`${URL}/folder`, {
-            name: input,
-            //   folderId: 1,
-            });
-        }
-        setInput("");
-        getFolders();
-    };
-
-     useEffect(() => {
-       getFolders();
-     }, []);
+  // fn para agregar carpeta con un form
+  const onSubmit = async (e) => {
+      e.preventDefault();
+      if (input) {
+        let newFolder = axios.post(`${URL}/folder`, {
+        name: input});
+      }
+      setInput("");
+    getFolders();
+  };
+  
+  useEffect(() => {
+    getFolders();
+  }, []);
 
     return (
       <div className={style.card}>
@@ -44,12 +45,15 @@ function Folder() {
           <ul>
             {folders.map((folder) => (
               <div className={style.folderdiv} key={folder.id}>
-                <li>
-                  {folder.name}
-                </li>
+                <li className={style.title}>-{folder.name}</li>
                 <div>
-                  <Link to={`/edit/${folder.id}`}>View items</Link>
-                  <button onClick={() => deleteFolder(folder.id)}>🗑</button>
+                  <Link to={`/todo/${folder.id}`}>View items</Link>
+                  <button
+                    className={style.delete}
+                    onClick={() => deleteFolder(folder.id)}
+                  >
+                    🗑
+                  </button>
                 </div>
               </div>
             ))}
@@ -57,15 +61,16 @@ function Folder() {
         ) : (
           <p className={style.completed}>No folders available</p>
         )}
-        <form action="" onSubmit={onSubmit}>
+        <form className={style.form} action="" onSubmit={onSubmit}>
           <input
             type="text"
-            name="addfolder"
+            name=""
             id="addfolder"
-            placeholder="New Folder"
+            placeholder="  New Folder"
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
+          <br />
           <button type="submit">Add</button>
         </form>
       </div>

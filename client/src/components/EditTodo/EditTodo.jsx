@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import style from "./EditTodo.module.css";
 const axios = require("axios");
 
@@ -51,9 +51,9 @@ function EditTodo() {
         />
         <div>
           <button type="submit">Save</button>
-          <Link to="/todo">
+          
             <button type="">Cancel</button>
-          </Link>
+          
         </div>
       </form>
     </div>
