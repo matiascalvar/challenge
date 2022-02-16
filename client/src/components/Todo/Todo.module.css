@@ -1,0 +1,26 @@
+.card {
+    width: 500px;
+    /* height: 300px; */
+    padding: 50px;
+    background-color: rgb(203, 173, 231);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.tododiv {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+.card ul {
+    padding: 0 10px;
+}
+
+.completed {
+    color: grey;
+}
