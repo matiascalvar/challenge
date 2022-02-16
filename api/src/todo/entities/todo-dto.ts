@@ -1,6 +1,7 @@
 export class TodoDto {
     id?: number;
-    body: string;
+    name: string;
+    foldeId: number;
     createdAt?: Date;
 
 }

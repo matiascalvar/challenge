@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { CreateFolderDto } from './dto/create-folder.dto';
 import { UpdateFolderDto } from './dto/update-folder.dto';
 import { Folder } from './entities/folder.entity';
@@ -12,29 +12,31 @@ export class FolderService {
   ) {}
 
   getAll(): Promise<Folder[]> {
-    return this.foldersRepository.find();
+    return this.foldersRepository.find({relations:['todos']});
   }
 
   async findOne(id: number): Promise<Folder> {
     try {
-      const todo = await this.foldersRepository.findOneOrFail(id);
-      return todo;
+      const folder = await this.foldersRepository.findOneOrFail(id, {
+        relations: ['todos'],
+      });
+      return folder;
     } catch (e) {throw e}
   }
 
-  create(createFolderDto: CreateFolderDto): Promise<Folder> {
+  async create(createFolderDto: CreateFolderDto): Promise<Folder> {
     const newFolder = this.foldersRepository.create({ name: createFolderDto.name });
     return this.foldersRepository.save(newFolder);
   }
 
   async update(id: number, createFolderDto: CreateFolderDto): Promise<Folder> {
-    const todo = await this.findOne(id);
-    todo.name = createFolderDto.name;
-    return this.foldersRepository.save(todo);
+    const folder = await this.findOne(id);
+    folder.name = createFolderDto.name;
+    return this.foldersRepository.save(folder);
   }
 
   async remove(id: number): Promise<Folder> {
-    const todo = await this.findOne(id);
-    return await this.foldersRepository.remove(todo)
+    const folder = await this.findOne(id);
+    return await this.foldersRepository.remove(folder)
   }
 }

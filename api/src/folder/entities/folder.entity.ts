@@ -12,6 +12,6 @@ export class Folder {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @OneToMany(() => Todo, (todo) => todo.folder)
+  @OneToMany((type) => Todo, (todo) => todo.folder, { onDelete: 'CASCADE' })
   todos: Todo[];
 }
