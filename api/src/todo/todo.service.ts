@@ -29,8 +29,12 @@ export class TodoService {
       name: createTodoDto.name
     });
     
-    const folder = await this.foldersRepository.findOneOrFail(createTodoDto.folderId)
+    if (createTodoDto.folderId) {
+      const folder = await this.foldersRepository.findOneOrFail(
+        createTodoDto.folderId,
+      );
     newTodo.folder = folder
+    }
     
     await this.todosRepository.save(newTodo);
     return newTodo
