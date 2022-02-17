@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+psql postgres://postgres:postgres@localhost:5432 <<EOF
+-- Database: todos
+
+-- DROP DATABASE IF EXISTS todos;
+
+CREATE DATABASE todos
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Spain.1252'
+    LC_CTYPE = 'Spanish_Spain.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+EOF
+cd api
+npm install &
+npm run start:prod &
+cd -
+cd client
+npm install &
+npm start
