@@ -71,7 +71,7 @@ function Folder() {
               <div className={style.folderdiv} key={folder.id}>
                 <li className={style.title}>• {folder.name}</li>
                 <div>
-                  <Link to={`/todo/${folder.id}`}>View items</Link>
+                  <Link className={style.editPen} to={`/todo/${folder.id}`}>🖍</Link>
                   <button
                     className={style.delete}
                     onClick={() => deleteFolder(folder.id)}

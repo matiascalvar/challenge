@@ -111,3 +111,18 @@
     transform: rotate(360deg);
   }
 }
+
+
+@media (max-width: 1125px) {
+  .card{
+    width: 80%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card{
+    width: 70%;
+    font-size: 0.8rem;
+  }
+}

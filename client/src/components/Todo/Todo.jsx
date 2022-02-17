@@ -112,9 +112,9 @@ function Todo() {
                     {todo.name}
                   </li>
                 </div>
-                <div>
+                <div className={style.editAndDelete}>
                   <Link className={style.editLink} to={`/edit/${todo.id}`}>
-                    Edit
+                    🖍
                   </Link>
                   <button
                     className={style.delete}
@@ -142,7 +142,7 @@ function Todo() {
           <button type="submit">Add</button>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
