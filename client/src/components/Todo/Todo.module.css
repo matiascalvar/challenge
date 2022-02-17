@@ -141,16 +141,24 @@
 
 @media (max-width: 576px) {
   .card{
-    width: 70%;
+    width: 65%;
     font-size: 0.8rem;
+    min-height: 30rem;
   }
    .tododiv{
-    width: 20rem;
+    width: 15rem;
   }
   .editAndDelete{
-      display: flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+  }
+  .form input {
+    width: 8rem;
+    min-width: 1rem;
+  }
+  .form button {
+    min-width: 6rem;
   }
 }
