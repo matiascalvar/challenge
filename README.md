@@ -7,7 +7,7 @@ ToDo App is a SPA made with Reactjs, Nestjs and PostgreSQL
 
 ## Requirements
 
-In order to execute this proyect you wil need:
+In order to execute this proyect you will need:
 ```bash
 ---> Node v14.17.6
 ---> npm v8.5.0
@@ -43,7 +43,7 @@ bash start
 
 ## Dependencies used
 
-```javascript
+```
 Node v14.17.6
 Nestjs v8.1.2
 pg v8.7.3
