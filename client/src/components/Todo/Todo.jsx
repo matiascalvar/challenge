@@ -11,7 +11,7 @@ function Todo() {
   let { id } = useParams();
   id = parseInt(id);
     const [todos, setTodos] = useState(null);
-    const [folder, setFolder] = useState();
+    const [folder, setFolder] = useState(null);
     const [input, setInput] = useState("");
 
     const getTodos = async () => {
@@ -55,7 +55,7 @@ function Todo() {
         getFolderById(id)
     }, [])
   
-  if (todos === null) {
+  if (todos === null || folder === null) {
     return (
       <>
         <div className={style.card}>
