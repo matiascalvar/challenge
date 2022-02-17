@@ -1,11 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
 .card {
     width: 60rem;
-    min-height: 30rem;
-    background-color: rgb(203, 173, 231);
+    min-height: 35rem;
+    padding: 50px;
+    background-color: #232334;
+    color: white;
     border-radius: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form {
+    margin-top: 5rem;
+}
+.button {
+    all:unset;
+    font-size: 1rem;
+    min-width: 15rem;
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #232334;
+    border: 0.2rem #ff006e solid;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.5s;
+    margin: 0.5rem 0;
+}
+.button:hover {
+    background-color: #ff006e;
+    color: white;
+}
+
+.form input {
+    all: unset; 
+    height: 2rem;
+    border-radius: 10px;
+    border: none;
+    background-color:#232334;
+    border-bottom: 0.2rem #ff006e solid;
+    font-size: 1rem;
+    min-width: 15rem;
+    margin-bottom: 2rem;
+}
+
+.ldsdualring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.ldsdualring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: ldsdualring 1.2s linear infinite;
+}
+@keyframes ldsdualring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

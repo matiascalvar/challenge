@@ -1,0 +1,15 @@
+.main{
+    color: #f15a7d;
+    position: absolute;
+    bottom: 0;
+    font-size: 0.7rem;
+}
+
+.main a{
+    text-decoration: none;
+    color:#f15a7d;
+    transition: 0.3s;
+}
+.main a:hover {
+    color: white
+}
