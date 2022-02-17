@@ -1,23 +1,23 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 import style from './Todo.module.css';
+import { URL } from '../../App';
 const axios = require("axios");
-
-const URL = "http://localhost:3001"
 
 function Todo() {
 
-    let { id } = useParams();
-    const [todos, setTodos] = useState([]);
+  let { id } = useParams();
+  id = parseInt(id);
+    const [todos, setTodos] = useState(null);
     const [folder, setFolder] = useState();
     const [input, setInput] = useState("");
 
     const getTodos = async () => {
         const response = await axios.get(`${URL}/todo`);
         setTodos([])
-        setTodos(response.data.filter(e => e.folder.id == id))
-        console.log(response.data)
+        setTodos(response.data.filter(e => e.folder.id === id))
         return response.data
     }
 
@@ -27,23 +27,24 @@ function Todo() {
     };
 
     const onCompleted = async (e) => {
-        const response = await axios.patch(`${URL}/todo/${e.target.id}`, { completed: true });
-        getTodos();
+      const response = await axios.patch(`${URL}/todo/${e.target.id}`, { completed: true });
+      getTodos();
+      return response;
     }
 
     const deleteTodo = async (id) => {
       const response = await axios.delete(`${URL}/todo/${id}`);
-      // setTodos(todos.filter(todo => todo.id !== id))
       getTodos();
+      return response;
     }
 
     const onSubmit = async (e) => {
         e.preventDefault();
         if (input) {
-            let newTodo = axios.post(`${URL}/todo`, {
-              name: input,
-              folderId: id,
-            });
+          await axios.post(`${URL}/todo`, {
+            name: input,
+            folderId: id,
+          });
         }
         setInput("");
         getTodos();
@@ -52,15 +53,47 @@ function Todo() {
     useEffect(() => {
         getTodos()
         getFolderById(id)
-    },[])
-
+    }, [])
+  
+  if (todos === null) {
     return (
+      <>
+        <div className={style.card}>
+          <h1>To-Do List</h1>
+          <h2>
+            <Link className={style.goBackFolder} to={"/"}>
+              Folders
+            </Link>
+            &nbsp;{">"} {folder}
+          </h2>
+          <div class={style.ldsdualring}></div>
+          <form className={style.form} onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="addtodo"
+              id="addtodo"
+              placeholder="   New task"
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+            />
+            <br />
+            <button type="submit">Add</button>
+          </form>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  return (
+    <>
       <div className={style.card}>
         <h1>To-Do List</h1>
-
         <h2>
-          <Link to={"/"}>Folders </Link>
-          {">"} {folder}
+          <Link className={style.goBackFolder} to={"/"}>
+            Folders
+          </Link>
+          &nbsp;{">"} {folder}
         </h2>
 
         {todos.length ? (
@@ -68,6 +101,7 @@ function Todo() {
             {todos.map((todo) => (
               <div className={style.tododiv} key={todo.id}>
                 <input
+                  className={style.control}
                   type="checkbox"
                   name="todo"
                   id={todo.id}
@@ -93,9 +127,9 @@ function Todo() {
             ))}
           </ul>
         ) : (
-          <p className={style.completed}>No todos available</p>
+          <p>No todos available</p>
         )}
-        <form className={style.form} action="" onSubmit={onSubmit}>
+        <form className={style.form} onSubmit={onSubmit}>
           <input
             type="text"
             name="addtodo"
@@ -105,12 +139,12 @@ function Todo() {
             value={input}
           />
           <br />
-          <button type="submit">
-            Add
-          </button>
+          <button type="submit">Add</button>
         </form>
       </div>
-    );
+      <Footer/>
+    </>
+  );
 }
 
 export default Todo;
